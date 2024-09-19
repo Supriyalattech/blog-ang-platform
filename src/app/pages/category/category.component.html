@@ -1,0 +1,76 @@
+<div class="m-5">
+    <div class="row">
+        <div class="col-md-10">
+            <h2>Categories</h2>
+        </div>
+        <div class="col-md-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" (click)="openModal()">Create New Category</button>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="row col-md-12 d-flex justify-content-center" *ngIf="categories.length <= 0">
+                No Categories Found.
+            </div>
+            <div class="row col-md-12" *ngIf="categories.length > 0">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let cat of categories; let i = index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{cat.name}}</td>
+                        <td>{{cat.description}}</td>
+                        <td>
+                            <span>
+                                <span style="cursor: pointer;" (click)="editCategory(cat)"><i class="bi-pencil"></i></span>&nbsp;&nbsp;
+                                <span style="cursor: pointer;" (click)="deleteCategory(cat.id)"><i class="bi-trash"></i></span>
+                            </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" #createModal id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">{{editCategoryId ? 'Update' : 'Create'}} Category</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <form #categoryForm="ngForm" (ngSubmit)="submitForm(categoryForm.value)">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="name" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea type="text" class="form-control" [(ngModel)]="description" id="description" name="description"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!name || !description || isFormSubmitted">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

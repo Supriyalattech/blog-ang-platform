@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 row">
+            <h2 class="mb-3">Sign Up</h2>
+            <form #sign_up="ngForm" (ngSubmit)="submitForm(sign_up.value)">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" id="nameVal" [(ngModel)]="nameVal" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Role</label>
+                    <select class="form-control" name="role" id="roleVal" [(ngModel)]="roleVal">
+                        <option value="admin">Admin</option>
+                        <option value="author">Author</option>
+                        <option value="reader">Reader</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="emailVal" [(ngModel)]="emailVal" name="email" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" class="form-control" id="passwordVal" [(ngModel)]="passwordVal" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPasswordVal" [(ngModel)]="confirmPasswordVal" name="confirmPassword" required>
+                  </div>
+                <button type="submit" class="btn btn-primary" [disabled]="(!emailVal || !passwordVal || !confirmPasswordVal || !nameVal || !roleVal) || passwordVal !== confirmPasswordVal">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

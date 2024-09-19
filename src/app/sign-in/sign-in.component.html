@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 row">
+            <h2 class="mb-3">Sign In</h2>
+            <form #sign_in="ngForm" (ngSubmit)="submitForm(sign_in.value)">
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="emailVal" [(ngModel)]="emailVal" name="email" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" class="form-control" id="passwordVal" [(ngModel)]="passwordVal" name="password" required>
+                </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPasswordVal" [(ngModel)]="confirmPasswordVal" name="confirmPassword" required>
+                  </div> -->
+                <button type="submit" class="btn btn-primary" [disabled]="!emailVal || !passwordVal">Submit</button>
+                <div class="mt-2">
+                  Don't have account <a href="/sign-up">Sign Up</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
